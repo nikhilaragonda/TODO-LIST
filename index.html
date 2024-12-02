@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <style>
+        ul li:nth-child(odd) {
+            background-color: red;
+        }
+        ul li:nth-child(even) {
+            background-color: rgb(240, 103, 103);
+        }
+    </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TODO - LIST</title>
+</head>
+<body>
+    <form id="todo">
+        <input type="text" id="le" placeholder="TODO LIST">
+        <input type="submit" value="ADD">
+    </form>
+    <ul id="para"></ul>
+
+    <script>
+        let form = document.getElementById("todo");
+        let le = document.getElementById("le");
+        let para = document.getElementById("para");
+
+        form.style.background = "blue";
+        form.style.padding = "10px";
+        form.style.display = "flex";
+        form.style.justifyContent = "center";
+
+        form.addEventListener("submit", (e) => {
+            e.preventDefault();
+
+            let list = document.createElement("li");
+            list.style.padding = "5px";
+            
+            list.innerText = le.value;
+
+            let btn = document.createElement("button");
+            btn.innerText = "DELETE";
+            list.appendChild(btn);
+            list.style.display = "flex";
+            list.style.justifyContent = "space-between";
+
+            btn.addEventListener("click", () => {
+                para.removeChild(list);
+            });
+
+            para.appendChild(list);
+
+            le.value = "";
+        });
+    </script>
+</body>
+</html>
